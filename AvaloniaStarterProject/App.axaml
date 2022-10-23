@@ -1,0 +1,15 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:AvaloniaStarterProject"
+             x:Class="AvaloniaStarterProject.App">
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+    <Application.Styles>
+		<FluentTheme Mode="Dark" />
+
+		<StyleInclude Source="avares://AvaloniaStarterProject/Controls/ResponsiveNavigationView.axaml" />
+		<StyleInclude Source="avares://AvaloniaStarterProject/Controls/NavigationViewItem.axaml" />
+    </Application.Styles>
+</Application>

@@ -1,0 +1,131 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+		xmlns:ir="clr-namespace:Avalonia.Xaml.Interactions.Responsive;assembly=Avalonia.Xaml.Interactions"
+		xmlns:ic="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+		xmlns:icons="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+		xmlns:models="using:AvaloniaStarterProject.Models"
+		xmlns:viewModels="using:AvaloniaStarterProject.ViewModels"
+        xmlns:controls="using:AvaloniaStarterProject.Controls">
+	<Design.PreviewWith>
+		<Border Width="200" Height="350">
+			<controls:ResponsiveNavigationView>
+				<TextBlock Text="Content" />
+			</controls:ResponsiveNavigationView>
+		</Border>
+	</Design.PreviewWith>
+
+	<Styles.Resources>
+		<DataTemplate x:Key="DesktopNavigationItemTemplate" DataType="models:NavigationModel">
+			<controls:NavigationViewItem Spacing="20"
+										 Padding="10"
+										 IconSize="20"
+										 GroupName="DesktopNavigation"
+										 Icon="{Binding Icon}"
+										 Header="{Binding Header}"
+										 IsChecked="{Binding IsSelected}"
+										 Command="{Binding NavigateToCommand}" />
+		</DataTemplate>
+		<DataTemplate x:Key="MobileNavigationItemTemplate" DataType="models:NavigationModel">
+			<controls:NavigationViewItem Orientation="Vertical"
+										 GroupName="MobileNavigation" Icon="{Binding Icon}"
+										 Header="{Binding Header}"
+										 Command="{Binding NavigateToCommand}"
+										 IsChecked="{Binding IsSelected}" />
+		</DataTemplate>
+	</Styles.Resources>
+
+	<Style Selector="SplitView#PART_Container">
+		<Setter Property="CompactPaneLength" Value="60" />
+	</Style>
+
+	<Style Selector="SplitView#PART_Container.small">
+		<Setter Property="DisplayMode" Value="Overlay" />
+	</Style>
+
+	<Style Selector="SplitView#PART_Container.large">
+		<Setter Property="DisplayMode" Value="CompactInline" />
+	</Style>
+
+	<Style Selector="Button#PART_TogglePane">
+		<Setter Property="icons:Attached.Icon" Value="fa-bars" />
+		<Setter Property="Margin" Value="15 5 0 0" />
+	</Style>
+
+	<Style Selector="ItemsControl#PART_DesktopTabControl">
+		<Setter Property="ItemTemplate" Value="{StaticResource DesktopNavigationItemTemplate}" />
+	</Style>
+	
+	<Style Selector="ItemsControl#PART_MobileTabControl">
+		<Setter Property="Grid.Row" Value="1" />
+		<Setter Property="Padding" Value="10" />
+		<Setter Property="IsVisible" Value="False" />
+		<Setter Property="ItemTemplate" Value="{StaticResource MobileNavigationItemTemplate}" />
+	</Style>
+
+	<Style Selector="ItemsControl#PART_MobileTabControl.small">
+		<Setter Property="IsVisible" Value="True" />
+	</Style>
+	
+	<Style Selector="controls|ResponsiveNavigationView">
+		<!-- Set Defaults -->
+		<Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}" />
+		<Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<SplitView Name="PART_Container"
+						   IsPaneOpen="{TemplateBinding IsPaneOpen}">
+					<i:Interaction.Behaviors>
+						<ir:AdaptiveBehavior SourceControl="{Binding $parent[Window]}"
+											 TargetControl="{Binding #PART_Container}">
+							<ir:AdaptiveClassSetter MinWidth="0"
+													MinWidthOperator="GreaterThanOrEqual"
+													MaxWidth="500"
+													MaxWidthOperator="LessThan"
+													ClassName="small" />
+							<ir:AdaptiveClassSetter MinWidth="500"
+													MinWidthOperator="GreaterThanOrEqual"
+													ClassName="large" />
+						</ir:AdaptiveBehavior>
+					</i:Interaction.Behaviors>
+					<SplitView.Pane>
+						<StackPanel Spacing="5">
+							<Button Name="PART_TogglePane" />
+
+							<ItemsControl Name="PART_DesktopTabControl"
+										  Items="{TemplateBinding MenuItems}" />
+						</StackPanel>
+					</SplitView.Pane>
+
+					<Grid RowDefinitions="*, Auto">
+						<ContentPresenter DockPanel.Dock="Top"
+										  Content="{TemplateBinding Content}"
+										  Padding="{TemplateBinding Padding}"
+										  Margin="{TemplateBinding Margin}"
+										  Background="{TemplateBinding Background}"
+										  Foreground="{TemplateBinding Foreground}" />
+
+						<ItemsControl Name="PART_MobileTabControl"
+									  Items="{TemplateBinding MenuItems}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<UniformGrid Rows="1" />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<i:Interaction.Behaviors>
+								<ir:AdaptiveBehavior SourceControl="{Binding $parent[Window]}"
+													 TargetControl="{Binding #PART_MobileTabControl}">
+									<ir:AdaptiveClassSetter MinWidth="0"
+															MinWidthOperator="GreaterThanOrEqual"
+															MaxWidth="500"
+															MaxWidthOperator="LessThan"
+															ClassName="small" />
+								</ir:AdaptiveBehavior>
+							</i:Interaction.Behaviors>
+						</ItemsControl>
+					</Grid>
+				</SplitView>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>

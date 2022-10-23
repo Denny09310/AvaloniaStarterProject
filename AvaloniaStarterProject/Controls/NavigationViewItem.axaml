@@ -1,0 +1,68 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:icons="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+        xmlns:controls="using:AvaloniaStarterProject.Controls">
+	<Design.PreviewWith>
+		<controls:NavigationViewItem IsChecked="True"
+									 Orientation="Vertical"
+									 Spacing="10" 
+									 Padding="5"
+									 Icon="fa-home" 
+									 Header="Home" />
+	</Design.PreviewWith>
+
+	<Style Selector="StackPanel#PART_InnerContainer">
+		<Setter Property="Grid.Column" Value="1" />
+	</Style>
+
+	<Style Selector="Border#PART_SelectedBorder">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="3" />
+		<Setter Property="Margin" Value="0 0 5 0" />
+	</Style>
+
+	<Style Selector="controls|NavigationViewItem[IsChecked=True] /template/ Border#PART_SelectedBorder">
+		<Setter Property="Background" Value="White" />
+	</Style>
+	
+	<Style Selector="controls|NavigationViewItem[Orientation=1] /template/ StackPanel#PART_InnerContainer">
+		<Setter Property="DockPanel.Dock" Value="Top" />
+	</Style>
+	
+	<Style Selector="controls|NavigationViewItem[Orientation=1] /template/ Border#PART_SelectedBorder">
+		<Setter Property="DockPanel.Dock" Value="Bottom" />
+		<Setter Property="Margin" Value="0 5 0 0" />
+	</Style>
+
+	<Style Selector="controls|NavigationViewItem[Orientation=1] /template/ DockPanel#PART_Wrapper">
+		<Setter Property="HorizontalAlignment" Value="Center" />
+	</Style>
+
+
+		<Style Selector="controls|NavigationViewItem">
+		<!-- Set Defaults -->
+		<Setter Property="GroupName" Value="Navigation" />
+		<Setter Property="Template">
+			<ControlTemplate>
+				<DockPanel Name="PART_Wrapper"
+						   Margin="{TemplateBinding Padding}">
+					
+					<Border Name="PART_SelectedBorder" />
+					
+					<StackPanel Name="PART_InnerContainer"
+								Orientation="{TemplateBinding Orientation}"
+								Spacing="{TemplateBinding Spacing}">
+						
+						<icons:Icon Foreground="{TemplateBinding Foreground}"
+									FontSize="{TemplateBinding IconSize}"
+									Value="{TemplateBinding Icon}" />
+						
+						<TextBlock VerticalAlignment="Center"
+								   FontSize="{TemplateBinding FontSize}"
+								   Text="{TemplateBinding Header}" />
+					</StackPanel>
+				</DockPanel>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>
