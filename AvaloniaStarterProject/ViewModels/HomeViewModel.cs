@@ -13,7 +13,7 @@ public class HomeViewModel : RoutableViewModelBase
     public ICommand GoToSettingsCommand
         => ReactiveCommand.Create(GoToSettings);
 
-    #endregion
+    #endregion Commands
 
     private void GoToSettings() => _navigationService.NavigateTo<SettingsViewModel>();
 }

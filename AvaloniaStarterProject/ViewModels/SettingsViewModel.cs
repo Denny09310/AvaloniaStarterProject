@@ -6,12 +6,12 @@ namespace AvaloniaStarterProject.ViewModels;
 
 public class SettingsViewModel : RoutableViewModelBase
 {
-	#region Commands
+    #region Commands
 
-	public ICommand GoToHomeCommand
-		=> ReactiveCommand.Create(GoToHome);
+    public ICommand GoToHomeCommand
+        => ReactiveCommand.Create(GoToHome);
 
-	#endregion
+    #endregion Commands
 
-	private void GoToHome() => _navigationService.NavigateBack();
+    private void GoToHome() => _navigationService.NavigateBack();
 }

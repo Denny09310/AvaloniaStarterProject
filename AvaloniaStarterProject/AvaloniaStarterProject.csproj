@@ -8,9 +8,6 @@
 		<AvaloniaResource Include="Assets\**" />
 	</ItemGroup>
 	<ItemGroup>
-		<Watch Include="**\*.xaml" />
-	</ItemGroup>
-	<ItemGroup>
 		<EmbeddedResource Include="appsettings.Development.json" />
 		<EmbeddedResource Include="appsettings.json" />
 	</ItemGroup>

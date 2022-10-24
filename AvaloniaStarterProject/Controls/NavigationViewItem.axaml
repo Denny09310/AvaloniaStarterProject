@@ -22,7 +22,15 @@
 	</Style>
 
 	<Style Selector="controls|NavigationViewItem[IsChecked=True] /template/ Border#PART_SelectedBorder">
-		<Setter Property="Background" Value="White" />
+		<Setter Property="Background" Value="#6E78FF" />
+	</Style>
+	
+	<Style Selector="controls|NavigationViewItem[IsChecked=True] /template/ StackPanel#PART_InnerContainer > icons|Icon">
+		<Setter Property="Foreground" Value="#6E78FF" />
+	</Style>
+	
+	<Style Selector="controls|NavigationViewItem[IsChecked=True] /template/ StackPanel#PART_InnerContainer > TextBlock">
+		<Setter Property="Foreground" Value="#6E78FF" />
 	</Style>
 	
 	<Style Selector="controls|NavigationViewItem[Orientation=1] /template/ StackPanel#PART_InnerContainer">
@@ -30,8 +38,8 @@
 	</Style>
 	
 	<Style Selector="controls|NavigationViewItem[Orientation=1] /template/ Border#PART_SelectedBorder">
-		<Setter Property="DockPanel.Dock" Value="Bottom" />
-		<Setter Property="Margin" Value="0 5 0 0" />
+		<Setter Property="DockPanel.Dock" Value="Top" />
+		<Setter Property="Margin" Value="0 0 0 5" />
 	</Style>
 
 	<Style Selector="controls|NavigationViewItem[Orientation=1] /template/ DockPanel#PART_Wrapper">
@@ -41,7 +49,7 @@
 
 		<Style Selector="controls|NavigationViewItem">
 		<!-- Set Defaults -->
-		<Setter Property="GroupName" Value="Navigation" />
+		<Setter Property="GroupName" Value="{TemplateBinding GroupName}" />
 		<Setter Property="Template">
 			<ControlTemplate>
 				<DockPanel Name="PART_Wrapper"

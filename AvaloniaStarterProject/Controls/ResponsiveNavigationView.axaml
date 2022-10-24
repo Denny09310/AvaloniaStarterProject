@@ -28,7 +28,8 @@
 		</DataTemplate>
 		<DataTemplate x:Key="MobileNavigationItemTemplate" DataType="models:NavigationModel">
 			<controls:NavigationViewItem Orientation="Vertical"
-										 GroupName="MobileNavigation" Icon="{Binding Icon}"
+										 GroupName="MobileNavigation" 
+										 Icon="{Binding Icon}"
 										 Header="{Binding Header}"
 										 Command="{Binding NavigateToCommand}"
 										 IsChecked="{Binding IsSelected}" />

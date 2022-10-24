@@ -1,10 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Styling;
 using System;
-using System.Windows.Input;
 
 namespace AvaloniaStarterProject.Controls
 {
@@ -39,7 +37,6 @@ namespace AvaloniaStarterProject.Controls
             set { SetValue(OrientationProperty, value); }
         }
 
-
         public static readonly StyledProperty<int> IconSizeProperty =
         AvaloniaProperty.Register<NavigationViewItem, int>(nameof(IconSize), 16);
 
@@ -48,7 +45,6 @@ namespace AvaloniaStarterProject.Controls
             get { return GetValue(IconSizeProperty); }
             set { SetValue(IconSizeProperty, value); }
         }
-
 
         public static readonly StyledProperty<int> SpacingProperty =
         AvaloniaProperty.Register<NavigationViewItem, int>(nameof(Spacing));

@@ -1,11 +1,12 @@
 ﻿using AvaloniaStarterProject.Services.Contracts;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System;
 using System.Windows.Input;
 
 namespace AvaloniaStarterProject.Models;
 
-public class NavigationModel
+public class NavigationModel : ReactiveObject
 {
     private INavigationService? _navigationService;
 
@@ -14,12 +15,29 @@ public class NavigationModel
         NavigateToCommand = ReactiveCommand.Create(() => _navigationService?.NavigateToRoute(ViewModel!));
     }
 
-    public bool IsSelected { get; set; }
     public string? Header { get; set; }
+
     public string? Icon { get; set; }
-    public Type? ViewModel { get; set; }
+
+    [Reactive]
+    public bool IsSelected { get; set; }
+
     public ICommand NavigateToCommand { get; }
 
-    public void SetNavigationService(INavigationService navigationService) 
-        => _navigationService = navigationService;
+    public Type? ViewModel { get; set; }
+
+    public void SetNavigationService(INavigationService navigationService)
+    {
+        _navigationService = navigationService;
+        _navigationService.RouterChanged += (s, e) =>
+        {
+            e.Navigate.Subscribe(CheckNavigationRoute);
+            e.NavigateBack.Subscribe(CheckNavigationRoute);
+        };
+    }
+
+    private void CheckNavigationRoute(IRoutableViewModel? viewModel)
+    {
+        if (viewModel?.GetType() == ViewModel) IsSelected = true;
+    }
 }

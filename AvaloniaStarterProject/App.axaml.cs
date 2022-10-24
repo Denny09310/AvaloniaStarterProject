@@ -6,6 +6,8 @@ using AvaloniaStarterProject.Views;
 using AvaloniaStarterProject.Windows;
 using ReactiveUI;
 using Splat;
+using System;
+using System.Reactive;
 
 namespace AvaloniaStarterProject
 {
@@ -18,22 +20,22 @@ namespace AvaloniaStarterProject
 
         public override void OnFrameworkInitializationCompleted()
         {
-            var dataContext = Resolver.GetService<IScreen>();
-
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = dataContext
+                    DataContext = GetDataContext()
                 };
             }
             else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
                 singleViewPlatform.MainView = new MainView
                 {
-                    DataContext = dataContext
-                };
+                    DataContext = GetDataContext()
+                }; ;
             }
+
+            RxApp.DefaultExceptionHandler = Observer.Create<Exception>(Console.WriteLine);
 
             base.OnFrameworkInitializationCompleted();
         }
@@ -48,5 +50,7 @@ namespace AvaloniaStarterProject
                                   .RegisterServices()
                                   .RegisterRoutes();
         }
+
+        private static object? GetDataContext() => Resolver.GetService<IScreen>();
     }
 }

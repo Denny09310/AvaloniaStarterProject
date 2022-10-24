@@ -49,4 +49,9 @@ internal static class Bootstrapper
 
         return configuration.Build();
     }
+
+    // TODO: Per aggiungere configurazioni dall'appsettings 
+    //       utilizzare il seguente metodo
+    //private static OptionsBase BuildOptions()
+    //    => Configuration.AddOption<OptionsBase>();
 }

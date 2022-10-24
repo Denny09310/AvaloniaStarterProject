@@ -1,17 +1,13 @@
-﻿using AvaloniaStarterProject.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+﻿using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+namespace AvaloniaStarterProject.Web;
+
 public class Program
 {
-    public static async Task Main(string[] args)
-    {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
-
     public static WebAssemblyHostBuilder CreateHostBuilder(string[] args)
     {
         var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -22,8 +18,9 @@ public class Program
 
         return builder;
     }
+
+    public static async Task Main(string[] args)
+    {
+        await CreateHostBuilder(args).Build().RunAsync();
+    }
 }
-
-
-
-

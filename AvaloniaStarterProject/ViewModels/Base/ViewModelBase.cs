@@ -13,7 +13,7 @@ namespace AvaloniaStarterProject.ViewModels.Base
         [ResolverDependency]
         protected readonly INavigationService _navigationService = null!;
 
-        #endregion
+        #endregion Dependencies
 
         public ViewModelBase()
         {

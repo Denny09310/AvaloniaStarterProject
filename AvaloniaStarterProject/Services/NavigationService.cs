@@ -2,20 +2,24 @@
 using AvaloniaStarterProject.Services.Contracts;
 using ReactiveUI;
 using System;
-using System.Reflection;
 
 namespace AvaloniaStarterProject.Services;
 
 public class NavigationService : INavigationService
 {
     private string? _currentRouteName;
-    private RoutingState? _router;
 
-    public void RegisterRouter(IScreen screen) => _router = screen.Router;
+    public event EventHandler<RoutingState>? RouterChanged;
+
+    public RoutingState? Router { get; private set; }
+
+    public void NavigateBack()
+        => Router?.NavigateBack.Execute()
+            .Subscribe(x => _currentRouteName = x?.UrlPathSegment);
 
     public void NavigateTo<T>() where T : IRoutableViewModel
     {
-        if (_router is null)
+        if (Router is null)
             throw new InvalidOperationException("You must register the router before navigating");
 
         var route = Resolver.GetService<T>();
@@ -24,7 +28,7 @@ public class NavigationService : INavigationService
 
         if (route.UrlPathSegment == _currentRouteName) return;
 
-        _router.Navigate.Execute(route)
+        Router.Navigate.Execute(route)
                         .Subscribe(x => _currentRouteName = x.UrlPathSegment);
     }
 
@@ -33,7 +37,9 @@ public class NavigationService : INavigationService
                     .MakeGenericMethod(viewModel)
                     .Invoke(this, null);
 
-    public void NavigateBack()
-        => _router?.NavigateBack.Execute()
-            .Subscribe(x => _currentRouteName = x?.UrlPathSegment);
+    public void RegisterRouter(IScreen screen)
+    {
+        Router = screen.Router;
+        RouterChanged?.Invoke(this, Router);
+    }
 }
