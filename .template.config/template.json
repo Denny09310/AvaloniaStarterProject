@@ -1,16 +1,25 @@
 {
-    "$schema": "http://json.schemastore.org/template",
-    "author": "Dennis Koja",
-    "classifications": ["Desktop", "Xaml", "Avalonia", "Web", "Mobile"],
-    "description": "A cross-platform Avalonia UI Application using the MVVM pattern targetting Desktop and Browser with WebAssembly with some services already set up",
-    "identity": "Avalonia.App.CrossPlatform.Extensions",
-    "name": "Avalonia Cross Platform Application (with Extensions)",
-    "preferNameDirectory": true,
-    "shortName": "avalonia.xplat.extensions",
-    "sourceName": "AvaloniaStarterProject",
-    "defaultName": "AvaloniaApplication",
-    "tags": {
-        "language": "C#",
-        "type": "project"
-    }
+	"$schema": "http://json.schemastore.org/template",
+	"author": "Dennis Koja",
+	"classifications": ["Desktop", "Xaml", "Avalonia", "Web", "Mobile"],
+	"description": "A cross-platform Avalonia UI Application using the MVVM pattern targetting Desktop and Browser with WebAssembly with some services already set up",
+	"identity": "Avalonia.App.CrossPlatform.Extensions",
+	"name": "Avalonia Cross Platform Application (with Extensions)",
+	"preferNameDirectory": true,
+	"shortName": "avalonia.xplat.extensions",
+	"sourceName": "AvaloniaStarterProject",
+	"defaultName": "AvaloniaApplication",
+	"tags": {
+		"language": "C#",
+		"type": "project"
+	},
+	"sources": [
+		{
+			"modifiers": [
+				{
+					"exclude": [".vs/**", ".git/**"]
+				}
+			]
+		}
+	]
 }

@@ -28,8 +28,8 @@ internal static class Resolver
         if (_resolver is null) return;
 
         var dependencyResolver = typeof(Resolver).GetMethod(nameof(GetService));
-        var dependencies = typeof(T).GetRuntimeFields()
-                                    .Where(f => Attribute.IsDefined(f, typeof(ResolverDependencyAttribute)));
+        var dependencies = obj.GetType().GetRuntimeFields()
+                                        .Where(f => Attribute.IsDefined(f, typeof(ResolverDependencyAttribute)));
 
         foreach (var dependency in dependencies)
         {
