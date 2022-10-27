@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Roslyn Debug": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\AvaloniaStarterProject.Cli\\AvaloniaStarterProject.Cli.csproj"
+    }
+  }
+}

@@ -43,7 +43,7 @@
 		{
 			"modifiers": [
         {
-          "exclude": [ ".vs/**", ".git/**", "bin/**", "obj/**" ]
+          "exclude": [ ".vs/**", ".git/**", "bin/**", "obj/**", "AvaloniaStarterProject.Cli/**", "AvaloniaStarterProject.Generation/**" ]
         },
         {
           "condition": "(!android)",

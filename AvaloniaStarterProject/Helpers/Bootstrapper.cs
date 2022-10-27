@@ -32,6 +32,7 @@ internal static class Bootstrapper
     {
         resolver.RegisterConstantAnd<IScreen>(new MainViewModel())
                        .RegisterAnd<HomeViewModel>()
+                       .RegisterAnd<CounterViewModel>()
                        .RegisterAnd<SettingsViewModel>()
                        .RegisterViewsForViewModels(Assembly.GetAssembly(typeof(App))!);
 

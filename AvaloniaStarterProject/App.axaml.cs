@@ -1,5 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Data.Core;
+using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using AvaloniaStarterProject.Helpers;
 using AvaloniaStarterProject.Views;
@@ -36,6 +38,7 @@ namespace AvaloniaStarterProject
             }
 
             RxApp.DefaultExceptionHandler = Observer.Create<Exception>(Console.WriteLine);
+            ExpressionObserver.DataValidators.RemoveAll(x => x is DataAnnotationsValidationPlugin);
 
             base.OnFrameworkInitializationCompleted();
         }

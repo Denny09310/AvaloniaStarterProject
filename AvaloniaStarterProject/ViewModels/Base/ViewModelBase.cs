@@ -4,44 +4,40 @@ using ReactiveUI;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
 
-namespace AvaloniaStarterProject.ViewModels.Base
+namespace AvaloniaStarterProject.ViewModels.Base;
+
+public partial class ViewModelBase : ReactiveObject, IActivatableViewModel
 {
-    public class ViewModelBase : ReactiveObject, IActivatableViewModel
+    #region Dependencies
+
+    [ResolverDependency]
+    protected readonly INavigationService _navigationService = null!;
+
+    #endregion Dependencies
+
+    public ViewModelBase()
     {
-        #region Dependencies
-
-        [ResolverDependency]
-        protected readonly INavigationService _navigationService = null!;
-
-        #endregion Dependencies
-
-        public ViewModelBase()
+        this.WhenActivated(async (d) =>
         {
-            this.WhenActivated(async (d) =>
-            {
-                await HandleActivation();
+            await HandleActivation();
 
-                Disposable
-                    .Create(async () =>
-                    {
-                        await HandleDeactivation();
-                    })
-                    .DisposeWith(d);
-            });
-        }
+            Disposable
+                .Create(async () => await HandleDeactivation())
+                .DisposeWith(d);
+        });
+    }
 
-        public ViewModelActivator Activator { get; } = new();
+    public ViewModelActivator Activator { get; } = new();
 
-        protected virtual Task HandleActivation()
-        {
-            this.ResolveDependencies();
+    protected virtual Task HandleActivation()
+    {
+        this.ResolveDependencies();
 
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
+    }
 
-        protected virtual Task HandleDeactivation()
-        {
-            return Task.CompletedTask;
-        }
+    protected virtual Task HandleDeactivation()
+    {
+        return Task.CompletedTask;
     }
 }

@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace AvaloniaStarterProject.Models;
 
-public class NavigationModel : ReactiveObject
+public partial class NavigationModel : ReactiveObject
 {
     private INavigationService? _navigationService;
 

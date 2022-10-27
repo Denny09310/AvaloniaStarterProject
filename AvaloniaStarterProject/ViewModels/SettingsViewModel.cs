@@ -1,17 +1,11 @@
 ﻿using AvaloniaStarterProject.ViewModels.Base;
 using ReactiveUI;
-using System.Windows.Input;
 
 namespace AvaloniaStarterProject.ViewModels;
 
-public class SettingsViewModel : RoutableViewModelBase
+[ReactiveGeneratedObject]
+public partial class SettingsViewModel : RoutableViewModelBase
 {
-    #region Commands
-
-    public ICommand GoToHomeCommand
-        => ReactiveCommand.Create(GoToHome);
-
-    #endregion Commands
-
+    [ReactiveCommand]
     private void GoToHome() => _navigationService.NavigateBack();
 }

@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:icons="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
+			 xmlns:viewModels="using:AvaloniaStarterProject.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaStarterProject.Views.CounterView"
+			 x:DataType="viewModels:CounterViewModel"
+			 x:CompileBindings="True">
+
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
+		
+		<TextBlock Text="{Binding Counter, FallbackValue=0}" TextAlignment="Center" FontSize="55" />
+
+		<StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="10">
+			<Button icons:Attached.Icon="fa-minus" Command="{Binding DecrementCounterCommand}" />
+			<Button icons:Attached.Icon="fa-plus" Command="{Binding IncrementCounterCommand}" />
+		</StackPanel>
+
+		<Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+				Command="{Binding DecrementCounterAsyncCommand}">
+			Decrement Async
+		</Button>
+		
+		<CheckBox Padding="15 0" Content="Lock Counter" IsChecked="{Binding ChangeCounterLock}" />
+	</StackPanel>
+</UserControl>

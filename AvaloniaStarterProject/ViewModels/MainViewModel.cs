@@ -13,6 +13,7 @@ namespace AvaloniaStarterProject.ViewModels
         public IEnumerable<NavigationModel> Routes { get; } = new NavigationModel[]
         {
             new() { Icon = "fa-home", Header = "Home", ViewModel = typeof(HomeViewModel) },
+            new() { Icon = "fa-clock", Header = "Timer", ViewModel = typeof(CounterViewModel) },
             new() { Icon = "fa-cog", Header = "Settings", ViewModel = typeof(SettingsViewModel) },
         };
 
