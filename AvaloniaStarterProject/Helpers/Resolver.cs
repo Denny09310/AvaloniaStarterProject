@@ -2,7 +2,10 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("AvaloniaStarterProject.Desktop.Tests")]
+[assembly: InternalsVisibleTo("AvaloniaStarterProject.Android.Tests")]
 namespace AvaloniaStarterProject.Helpers;
 
 internal static class Resolver

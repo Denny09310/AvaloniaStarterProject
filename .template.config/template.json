@@ -13,12 +13,58 @@
 		"language": "C#",
 		"type": "project"
 	},
+  "symbols": {
+    "android": {
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Generate the android project for the application",
+      "type": "parameter"
+    },
+    "desktop": {
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Generate the desktop project for the application",
+      "type": "parameter"
+    },
+    "ios": {
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Generate the ios project for the application",
+      "type": "parameter"
+    },
+    "web": {
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Generate the web project for the application",
+      "type": "parameter"
+    }
+  },
 	"sources": [
 		{
 			"modifiers": [
-				{
-					"exclude": [".vs/**", ".git/**"]
-				}
+        {
+          "exclude": [ ".vs/**", ".git/**", "bin/**", "obj/**" ]
+        },
+        {
+          "condition": "(!android)",
+          "exclude": [ "AvaloniaStarterProject.Android/**", "AvaloniaStarterProject.Android.Tests/**" ]
+        },
+        {
+          "condition": "(!desktop)",
+          "exclude": [ "AvaloniaStarterProject.Desktop/**", "AvaloniaStarterProject.Desktop.Tests/**" ]
+        },
+        {
+          "condition": "(!ios)",
+          "exclude": [ "AvaloniaStarterProject.iOS/**", "AvaloniaStarterProject.iOS.Tests/**" ]
+        },
+        {
+          "condition": "(!web)",
+          "exclude": [ "AvaloniaStarterProject.Web/**", "AvaloniaStarterProject.Web.Tests/**" ]
+        },
+        {
+          "condition": "(!desktop)",
+          "exclude": [ "AvaloniaStarterProject.Shared.Tests/**" ]
+        }
 			]
 		}
 	]

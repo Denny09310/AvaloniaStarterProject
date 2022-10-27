@@ -7,7 +7,10 @@ using Splat;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("AvaloniaStarterProject.Desktop.Tests")]
+[assembly: InternalsVisibleTo("AvaloniaStarterProject.Android.Tests")]
 namespace AvaloniaStarterProject.Helpers;
 
 internal static class Bootstrapper
