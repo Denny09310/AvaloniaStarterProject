@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaStarterProject.ViewModels;
 
-[ReactiveGeneratedObject]
+[ReactiveObject]
 public partial class CounterViewModel : RoutableViewModelBase
 {
     [Reactive]
@@ -30,6 +30,6 @@ public partial class CounterViewModel : RoutableViewModelBase
     private async Task DecrementCounterAsync()
     {
         await Task.Delay(2500);
-        Counter++;
+        Counter--;
     }
 }

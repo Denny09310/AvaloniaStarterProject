@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace AvaloniaStarterProject.ViewModels;
 
-[ReactiveGeneratedObject]
+[ReactiveObject]
 public partial class HomeViewModel : RoutableViewModelBase
 {
     public static string Greeting => "Welcome to Avalonia!";
